@@ -8,6 +8,17 @@ const HowItWorks = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useGSAP(() => {
+    gsap.to("#honkai-video", {
+      scrollTrigger: {
+        trigger: "#honkai-video",
+        toggleActions: "play pause reverse restart",
+        start: "-10% bottom",
+      },
+      onComplete: () => {
+        videoRef.current?.play();
+      },
+    });
+
     gsap.from("#chip", {
       scrollTrigger: {
         trigger: "#chip",
@@ -61,6 +72,7 @@ const HowItWorks = () => {
             </div>
             <div className="hiw-video">
               <video
+                id="honkai-video"
                 className="pointer-events-none"
                 playsInline
                 muted
